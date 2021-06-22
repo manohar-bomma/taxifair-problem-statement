@@ -24,6 +24,10 @@ object Application {
 
     val input = Input(inputMap("source"), inputMap("destination"), inputMap("numberOfPassengers").toInt)
 
+    if(input.numberOfTravellers <= 0){
+      throw new Exception("atleast one traveller/s required")
+    }
+
     val distanceTravelled = routes.find(r => (r.source == input.source & r.destination == input.destination) |
       (r.source == input.destination & r.destination == input.source)).map(_.distance).headOption
 
